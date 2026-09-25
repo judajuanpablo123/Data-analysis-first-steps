@@ -43,3 +43,48 @@ for (columna in data)
 }
 result_na
 
+data_na <- data.frame(Variable = colnames(data),
+                      na = result_na)
+data_na
+
+data_na %>%
+        mutate(porcentaje_na = na/nrow(data)* 100)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## aqui comenzamos aver correlaciones entre las variables solamente numericas
+
+data_numeric <- data %>%
+                select(where(is.numeric)) %>%
+                drop_na() ## quitamos valores na
+
+cor <- cor(data_numeric)
+library(GGally)
+ggpairs(data_numeric)
